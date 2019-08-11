@@ -1,0 +1,8 @@
+{
+  "Records": [
+    {
+      "messageId": "c76f12f4-6886-46a5-b320-8a17aff84f1e",
+      "body": "{\r\n  \"id\": \"91320fed-207a-4ab3-a2ca-179eee805d8a\",\r\n  \"type\": \"credit_card\",\r\n  \"description\": \"Smartband XYZ 3.0\",\r\n  \"card\": {\r\n    \"number\": \"4693285329537063\",\r\n    \"name\": \"John Doe\",\r\n    \"exp\": \"01/2025\",\r\n    \"cvv\": \"886\"\r\n  },\r\n  \"amount\": 10.15\r\n}\r\n"
+    }
+  ]
+}

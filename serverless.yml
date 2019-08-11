@@ -21,6 +21,12 @@ provider:
         - 'sqs:SendMessage'
       Resource:
         - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:transactions-${opt:stage}'
+    - Effect: 'Allow'
+      Action:
+        - 'dynamodb:PutItem'
+      Resource:
+        - 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/transactions_${opt:stage}'
+
 package:
   exclude:
     - ./**
@@ -39,3 +45,11 @@ functions:
           path: v1/transactions
           method: post
           cors: true
+  processTransactionsQueue:
+    handler: dist/handlers.processTransactionsQueueHandler
+    reservedConcurrency: 1
+    events:
+      - sqs:
+          arn: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:transactions-${opt:stage}'
+          batchSize: 1
+          enabled: true
