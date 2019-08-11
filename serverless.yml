@@ -1,0 +1,41 @@
+service: psp-service
+
+plugins:
+  - serverless-pseudo-parameters
+
+custom:
+  aws: ${file(./config/${self:provider.stage}.json):aws}
+
+provider:
+  name: aws
+  # deploymentBucket: TODO: create a bucket via TF
+  runtime: nodejs10.x
+  memorySize: 128
+  stage: ${opt:stage}
+  timeout: 10
+  environment:
+    NODE_ENV: '${opt:stage}'
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'sqs:SendMessage'
+      Resource:
+        - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:transactions-${opt:stage}'
+package:
+  exclude:
+    - ./**
+    - '!node_modules/**'
+    - 'node_modules/**/aws-sdk/**'
+  include:
+    - package.json
+    - dist/**
+    - config/**
+
+functions:
+  receiveTransactions:
+    handler: dist/handlers.receiveTransactionsHandler
+    events:
+      - http:
+          path: v1/transactions
+          method: post
+          cors: true

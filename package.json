@@ -1,0 +1,29 @@
+{
+  "name": "psp-service",
+  "version": "0.0.0",
+  "description": "Dead simple Payment Service Provider (PSP) @pagar.me",
+  "main": "index.js",
+  "engines": {
+    "npm": "^6.9.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc"
+  },
+  "keywords": [
+    "PSP",
+    "pagar.me"
+  ],
+  "author": "Rafael Bertelli <rafael.p.bertelli@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.31",
+    "@types/node": "12.7.1",
+    "serverless": "^1.49.0",
+    "serverless-pseudo-parameters": "2.4.0",
+    "typescript": "3.5.3"
+  },
+  "dependencies": {
+    "aws-sdk": "2.507.0",
+    "yup": "0.27.0"
+  }
+}

@@ -1,0 +1,1 @@
+export { receiveTransactionsHandler } from './receiveTransactions';
