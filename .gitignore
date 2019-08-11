@@ -1,3 +1,11 @@
+# package dirs
+node_modules
+
+# Serverless directories
+.serverless
+dist
+
 #Terraform
 .terraform
 *.tfstate
+*.tfstate.backup
