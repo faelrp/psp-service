@@ -1,0 +1,22 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": ["airbnb-typescript/base"],
+  "rules": {
+    "import/prefer-default-export": "off"
+  },
+  "env": {
+    "jest": true
+  },
+  "plugins": ["import"],
+  "settings": {
+    "import/extensions": [".js", ".ts"],
+    "import/parsers": {
+      "typescript-eslint-parser": [".ts"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts"]
+      }
+    }
+  }
+}

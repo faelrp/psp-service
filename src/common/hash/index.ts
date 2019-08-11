@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-const getTransactionHash = (transaction) => {
+const getTransactionHash = transaction => {
   const data = JSON.stringify(transaction);
 
   return crypto

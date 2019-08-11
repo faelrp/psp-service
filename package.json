@@ -7,7 +7,8 @@
     "npm": "^6.9.0"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsc",
+    "lint": "eslint --ext .js,.ts src/"
   },
   "keywords": [
     "PSP",
@@ -18,9 +19,16 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.31",
     "@types/node": "12.7.1",
+    "@typescript-eslint/eslint-plugin": "1.13.0",
+    "@typescript-eslint/parser": "1.13.0",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb-typescript": "4.0.1",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-typescript": "0.14.0",
     "serverless": "^1.49.0",
     "serverless-pseudo-parameters": "2.4.0",
-    "typescript": "3.5.3"
+    "typescript": "3.2.1",
+    "typescript-eslint-parser": "22.0.0"
   },
   "dependencies": {
     "aws-sdk": "2.507.0",
