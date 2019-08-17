@@ -5,12 +5,20 @@ export default targetHandler => async event => {
     // make sure we are processing one at once
     if (Records && Records.length === 1) {
       const {
-        dynamodb: {
-          NewImage: {
-            transaction: { S: payload },
-          },
-        },
+        eventName,
+        dynamodb,
       } = Records[0];
+
+      // we want INSERT ops only
+      if (eventName !== 'INSERT') {
+        return true;
+      }
+
+      const {
+        NewImage: {
+          transaction: { S: payload },
+        },
+      } = dynamodb;
 
       await targetHandler({ payload: JSON.parse(payload) });
     } else {

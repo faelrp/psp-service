@@ -31,6 +31,8 @@ provider:
         - 'dynamodb:PutItem'
       Resource:
         - 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/transactions_${opt:stage}'
+        - 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/payables_${opt:stage}'
+        - 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/payables_balance_${opt:stage}'
     - Effect: 'Allow'
       Action:
         - 'dynamodb:GetRecords'
@@ -63,4 +65,10 @@ functions:
     reservedConcurrency: 1
   processTransactionEvents:
     handler: dist/handlers.processTransactionEventsHandler
+    reservedConcurrency: 1
+  processCreditCardOpsQueue:
+    handler: dist/handlers.processCreditCardOpsQueueHandler
+    reservedConcurrency: 1
+  processDebitCardOpsQueue:
+    handler: dist/handlers.processDebitCardOpsQueueHandler
     reservedConcurrency: 1

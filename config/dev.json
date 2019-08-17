@@ -2,7 +2,9 @@
   "nodeEnv": "dev",
   "aws": {
     "dynamodb": {
-      "transactionsTable": "transactions_dev"
+      "transactionsTable": "transactions_dev",
+      "payablesTable": "payables_dev",
+      "payablesBalanceTable": "payables_balance_dev"
     },
     "sqs": {
       "transactionsQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/transactions-dev",
