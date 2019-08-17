@@ -3,6 +3,11 @@ import config from '../../config';
 
 const documentClient = DynamoDB.getDocumentClient();
 
+export enum TransactionType {
+  CREDIT = 'credit_card',
+  DEBIT = 'debit_card',
+}
+
 interface Card {
   number: string;
   name: string;
@@ -12,7 +17,7 @@ interface Card {
 
 export interface Transaction {
   id: string;
-  type: string;
+  type: TransactionType;
   description: string;
   card: Card;
   amount: number;

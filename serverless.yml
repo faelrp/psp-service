@@ -24,6 +24,8 @@ provider:
         - 'sqs:GetQueueAttributes'
       Resource:
         - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:transactions-${opt:stage}'
+        - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:credit-card-ops-${opt:stage}'
+        - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:debit-card-ops-${opt:stage}'
     - Effect: 'Allow'
       Action:
         - 'dynamodb:PutItem'
