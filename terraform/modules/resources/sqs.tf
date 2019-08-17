@@ -23,8 +23,21 @@ resource "aws_sqs_queue" "creditCardOperationsQueue" {
   message_retention_seconds  = 86400
 }
 
+resource "aws_lambda_event_source_mapping" "credit-card-ops-sqs-event-source" {
+  function_name = "arn:aws:lambda:${var.region}:${var.accountId}:function:psp-service-${var.environment}-processCreditCardOpsQueue"
+  enabled = true
+  batch_size = 1
+  event_source_arn = "${aws_sqs_queue.creditCardOperationsQueue.arn}"
+}
+
 resource "aws_sqs_queue" "debitCardOperationsQueue" {
   name                       = "${local.debitCardOpsQueueName}"
   visibility_timeout_seconds = 30
   message_retention_seconds  = 86400
+}
+resource "aws_lambda_event_source_mapping" "debit-card-ops-sqs-event-source" {
+  function_name = "arn:aws:lambda:${var.region}:${var.accountId}:function:psp-service-${var.environment}-processDebitCardOpsQueue"
+  enabled = true
+  batch_size = 1
+  event_source_arn = "${aws_sqs_queue.debitCardOperationsQueue.arn}"
 }
