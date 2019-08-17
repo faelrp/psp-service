@@ -9,7 +9,8 @@
     "sqs": {
       "transactionsQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/transactions-dev",
       "creditCardOpsQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/credit-card-ops-dev",
-      "debitCardOpsQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/debit-card-ops-dev"
+      "debitCardOpsQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/debit-card-ops-dev",
+      "balanceConsolidationQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/balance-consolidation-dev"
     }
   }
 }

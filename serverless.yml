@@ -26,9 +26,13 @@ provider:
         - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:transactions-${opt:stage}'
         - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:credit-card-ops-${opt:stage}'
         - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:debit-card-ops-${opt:stage}'
+        - 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:balance-consolidation-${opt:stage}'
     - Effect: 'Allow'
       Action:
         - 'dynamodb:PutItem'
+        - 'dynamodb:UpdateItem'
+        - 'dynamodb:Scan'
+        - 'dynamodb:GetItem'
       Resource:
         - 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/transactions_${opt:stage}'
         - 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/payables_${opt:stage}'
@@ -41,6 +45,7 @@ provider:
         - 'dynamodb:ListStreams'
       Resource:
         - 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/transactions_${opt:stage}/stream*'
+        - 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/payables_${opt:stage}/stream*'
 
 package:
   exclude:
@@ -72,3 +77,23 @@ functions:
   processDebitCardOpsQueue:
     handler: dist/handlers.processDebitCardOpsQueueHandler
     reservedConcurrency: 1
+  processPayableEvents:
+    handler: dist/handlers.processPayableEventsHandler
+    reservedConcurrency: 1
+  processBalanceConsolidationQueue:
+    handler: dist/handlers.processBalanceConsolidationQueueHandler
+    reservedConcurrency: 1
+  getTransactions:
+    handler: dist/handlers.getTransactionsHandler
+    events:
+      - http:
+          path: v1/transactions
+          method: get
+          cors: true
+  getBalance:
+    handler: dist/handlers.getBalanceHandler
+    events:
+      - http:
+          path: v1/payables/balance
+          method: get
+          cors: true

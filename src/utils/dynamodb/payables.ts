@@ -8,7 +8,7 @@ export enum PayablesType {
   WAITING_FUNDS = 'waiting_funds',
 }
 
-interface Payable {
+export interface Payable {
   cardNumber: string;
   tnxHash: string;
   status: PayablesType;

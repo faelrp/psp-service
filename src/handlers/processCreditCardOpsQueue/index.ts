@@ -8,7 +8,6 @@ import hashHelper from '../../common/hash';
 
 interface Params {
   payload: Transaction;
-  hash: string
 }
 
 const DAYS = 30;

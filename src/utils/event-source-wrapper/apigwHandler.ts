@@ -5,7 +5,11 @@ const success = (statusCode, data) => ({
 
 export default targetHandler => async event => {
   try {
-    const body = JSON.parse(event.body);
+
+    let body;
+    if (event.httpMethod !== 'GET') {
+      body = JSON.parse(event.body);
+    }
 
     const data = await targetHandler({
       body,

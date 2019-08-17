@@ -3,3 +3,7 @@ export { processTransactionsQueueHandler } from './processTransactionsQueue';
 export { processTransactionEventsHandler } from './processTransactionEvents';
 export { processCreditCardOpsQueueHandler } from './processCreditCardOpsQueue';
 export { processDebitCardOpsQueueHandler } from './processDebitCardOpsQueue';
+export { processPayableEventsHandler } from './processPayableEvents';
+export { processBalanceConsolidationQueueHandler } from './processBalanceConsolidationQueue';
+export { getTransactionsHandler } from './getTransactions';
+export { getBalanceHandler } from './getBalance';

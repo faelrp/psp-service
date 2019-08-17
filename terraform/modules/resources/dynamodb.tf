@@ -36,35 +36,33 @@ resource "aws_lambda_event_source_mapping" "transaction-stream-event-source" {
 
 resource "aws_dynamodb_table" "payables" {
   name           = "${local.payablesTable}"
-  hash_key       = "cardNumber"
-  range_key      = "tnxHash"
+  hash_key       = "tnxHash"
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
   write_capacity = 1
-
-  attribute {
-    name = "cardNumber"
-    type = "S"
-  }
 
   attribute {
     name = "tnxHash"
     type = "S"
   }
+
+  stream_enabled = true
+  stream_view_type = "NEW_IMAGE"
+}
+resource "aws_lambda_event_source_mapping" "payable-stream-event-source" {
+  event_source_arn  = "${aws_dynamodb_table.payables.stream_arn}"
+  function_name     = "arn:aws:lambda:${var.region}:${var.accountId}:function:psp-service-${var.environment}-processPayableEvents"
+  enabled           = true
+  batch_size        = 1
+  starting_position = "LATEST"
 }
 
 resource "aws_dynamodb_table" "payable_balance" {
   name           = "${local.balanceTable}"
-  hash_key       = "cardNumber"
-  range_key      = "status"
+  hash_key       = "status"
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
   write_capacity = 1
-
-  attribute {
-    name = "cardNumber"
-    type = "S"
-  }
 
   attribute {
     name = "status"

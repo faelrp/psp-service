@@ -1,4 +1,4 @@
-import dynamoStreamHandler from '../../utils/event-source-wrapper/dynamoStreamHandler';
+import transactionStreamHandler from '../../utils/event-source-wrapper/transactionStreamHandler';
 
 import { Transaction, TransactionType } from '../../utils/dynamodb/transactions';
 
@@ -23,4 +23,4 @@ const handler = async ({ payload: transaction }: Handler) => {
   }
 };
 
-export const processTransactionEventsHandler = dynamoStreamHandler(handler);
+export const processTransactionEventsHandler = transactionStreamHandler(handler);

@@ -28,13 +28,13 @@ interface Add {
   transaction: Transaction;
 }
 
-const add = async ({ hash, transaction }: Add) => {
-  const {
-    aws: {
-      dynamodb: { transactionsTable },
-    },
-  } = config;
+const {
+  aws: {
+    dynamodb: { transactionsTable },
+  },
+} = config;
 
+const add = async ({ hash, transaction }: Add) => {
   const { id } = transaction;
   const ts = new Date().getTime();
   const params = {
@@ -52,6 +52,17 @@ const add = async ({ hash, transaction }: Add) => {
   await documentClient.put(params).promise();
 };
 
+const list = async () => {
+  const params = {
+    TableName: transactionsTable,
+  };
+
+  const { Items } = await documentClient.scan(params).promise();
+
+  return Items.map(item => JSON.parse(item.transaction));
+};
+
 export default {
   add,
+  list,
 };
