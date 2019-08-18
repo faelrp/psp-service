@@ -3,7 +3,7 @@ import config from '../../config';
 
 const sqs = new AWS.SQS({ apiVersion: '2012-11-05' });
 
-export default async (payableEvent) => {
+export default async payableEvent => {
   const {
     aws: {
       sqs: { balanceConsolidationQueue },

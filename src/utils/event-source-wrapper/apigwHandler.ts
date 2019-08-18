@@ -5,7 +5,6 @@ const success = (statusCode, data) => ({
 
 export default targetHandler => async event => {
   try {
-
     let body;
     if (event.httpMethod !== 'GET') {
       body = JSON.parse(event.body);

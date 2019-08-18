@@ -20,10 +20,9 @@ export default targetHandler => async event => {
         },
       } = dynamodb;
 
-      await targetHandler({ payload: JSON.parse(payload) });
-    } else {
-      throw new Error('Invalid number of Records provided. Can only process 1 message at a time.');
+      return targetHandler({ payload: JSON.parse(payload) });
     }
+    throw new Error('Invalid number of Records provided. Can only process 1 message at a time.');
   } catch (error) {
     console.log(error);
     throw error;
