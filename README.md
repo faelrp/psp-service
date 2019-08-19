@@ -35,6 +35,8 @@ we will need to use serverless for lambda provision. The following will take car
 npx sls deploy -s dev
 ```
 
+NOTE: make sure to update the `config/dev.json` file and update `AWS_ACCOUNT_GOES_HERE` to your aws account.
+
 #### Third Step
 
 this service depends on some of AWS resources like SQS, DynamoDB, etc. So, we should execute the terraform script to make sure those resources are up and running for us
@@ -65,6 +67,69 @@ At this point you should have all the resources needed to make all this work :)
 
 NOTE: Order here matters, so you should make sure to run serverless before Terraform. The reason is that TF is creating the event sources for lambdas.
 
+## Diagram
+
+TBD
+
+## API
+
+### POST - v1/transactions
+
+Request
+```
+{
+  "id": "91320fed-207a-4ab3-a2ca-179eee805d8b",
+  "type": "debit_card",
+  "description": "Smartband XYZ 3.0",
+  "card": {
+    "number": "4693285329537063",
+    "name": "John Doe",
+    "exp": "01/2025",
+    "cvv": "886"
+  },
+  "amount": 20
+}
+```
+
+Response
+status code 200
+```
+{
+  "success": true
+}
+```
+
+### GET - v1/transactions
+
+Response
+status code 200
+```
+[
+  {
+    "id": "91320fed-207a-4ab3-a2ca-179eee805d8b",
+    "type": "debit_card",
+    "description": "Smartband XYZ 3.0",
+    "card": {
+      "number": "7063",
+      "name": "John Doe",
+      "exp": "01/2025",
+      "cvv": "886"
+    },
+    "amount": 20
+  }
+]
+```
+
+### GET - /v1/payables/balance
+
+Response
+status code 200
+```
+{
+  "paid": 19.4,
+  "waiting_funds": 0
+}
+```
 
 ## Running the tests
 
@@ -84,6 +149,7 @@ This service follows the `airbnb-typescript/base` code style via eslint
 * [AWS Lambda](https://aws.amazon.com/lambda/)
 * [AWS SQS](https://aws.amazon.com/sqs/)
 * [AWS DynamoDB](https://aws.amazon.com/dynamodb/)
+* [AWS Apigateway](https://aws.amazon.com/apigateway/)
 * [Serverless Framework](https://serverless.com/) - lambda provisioning
 * [Terraform](terraform.io) - other aws resources provisioning
 * [Node.js](https://nodejs.org)

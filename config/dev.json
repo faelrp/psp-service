@@ -7,10 +7,10 @@
       "payablesBalanceTable": "payables_balance_dev"
     },
     "sqs": {
-      "transactionsQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/transactions-dev",
-      "creditCardOpsQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/credit-card-ops-dev",
-      "debitCardOpsQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/debit-card-ops-dev",
-      "balanceConsolidationQueue": "https://sqs.us-east-1.amazonaws.com/957104647697/balance-consolidation-dev"
+      "transactionsQueue": "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_GOES_HERE/transactions-dev",
+      "creditCardOpsQueue": "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_GOES_HERE/credit-card-ops-dev",
+      "debitCardOpsQueue": "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_GOES_HERE/debit-card-ops-dev",
+      "balanceConsolidationQueue": "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_GOES_HERE/balance-consolidation-dev"
     }
   }
 }
