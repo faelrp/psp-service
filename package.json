@@ -9,7 +9,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "lint": "eslint --ext .js,.ts src/",
-    "test": "npm run lint && npm run build && npx jest --runInBand --detectOpenHandles --coverage --config jest.config.js"
+    "test": "npm run lint && npm run build && NODE_ENV=dev npx jest --runInBand --detectOpenHandles --coverage --config jest.config.js"
   },
   "keywords": [
     "PSP",

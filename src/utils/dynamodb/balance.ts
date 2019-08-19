@@ -21,13 +21,11 @@ const {
 } = config;
 
 const init = async (balance: InitParams) => {
-  const createdAt = new Date().getTime();
   const params = {
     TableName: payablesBalanceTable,
     Item: {
       ...balance,
       amount: 0,
-      createdAt,
     },
     ConditionExpression: 'attribute_not_exists(#status)',
     ExpressionAttributeNames: { '#status': 'status' },

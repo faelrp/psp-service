@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Schema validator should not be valid if input not respect the field type 1`] = `[ValidationError: test must be a \`string\` type, but the final value was: \`123\`.]`;
+
+exports[`Schema validator should not be valid if required field is missing 1`] = `[ValidationError: test is a required field]`;
+
+exports[`Schema validator should return null if optional field is missing 1`] = `null`;

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DynamoDb - Balance get Happy path should work 1`] = `
+Array [
+  Array [
+    Object {
+      "Key": Object {
+        "status": "paid",
+      },
+      "TableName": "payables_balance_dev",
+    },
+  ],
+]
+`;
+
+exports[`DynamoDb - Balance get Happy path should work 2`] = `
+Object {
+  "unit": "test",
+}
+`;
+
+exports[`DynamoDb - Balance init Happy path should work 1`] = `
+Array [
+  Array [
+    Object {
+      "ConditionExpression": "attribute_not_exists(#status)",
+      "ExpressionAttributeNames": Object {
+        "#status": "status",
+      },
+      "Item": Object {
+        "amount": 0,
+        "status": "paid",
+      },
+      "TableName": "payables_balance_dev",
+    },
+  ],
+]
+`;
+
+exports[`DynamoDb - Balance update Happy path should work 1`] = `
+Array [
+  Array [
+    Object {
+      "ExpressionAttributeValues": Object {
+        ":value": 10,
+      },
+      "Key": Object {
+        "status": "paid",
+      },
+      "TableName": "payables_balance_dev",
+      "UpdateExpression": "set amount = amount + :value",
+    },
+  ],
+]
+`;

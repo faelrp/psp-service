@@ -9,3 +9,7 @@ dist
 .terraform
 *.tfstate
 *.tfstate.backup
+
+# Test coverage folder
+coverage
+jest_0

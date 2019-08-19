@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hash Helper should not be valid if input not respect the field type 1`] = `"8e5ec653ca4c7362376c1ba62cc36d91e0f65e6547751c03f669f67633bfdc1c"`;
