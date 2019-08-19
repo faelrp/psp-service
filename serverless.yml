@@ -8,7 +8,6 @@ custom:
 
 provider:
   name: aws
-  # deploymentBucket: TODO: create a bucket via TF
   runtime: nodejs10.x
   memorySize: 128
   stage: ${opt:stage}

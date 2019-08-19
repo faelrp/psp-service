@@ -1,7 +1,7 @@
 locals {
-  profile = "bertelli" // TODO: update profile
+  profile = "AWS_PROFILE_GOES_HERE"
   region = "us-east-1"
-  accountId = "957104647697" // TODO: update here
+  accountId = "AWS_ACCOUNT_GOES_HERE"
 }
 
 provider "aws" {
