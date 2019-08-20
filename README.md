@@ -69,7 +69,7 @@ NOTE: Order here matters, so you should make sure to run serverless before Terra
 
 ## Diagram
 
-TBD
+![diagram](images/diagram.png)
 
 ## API
 
